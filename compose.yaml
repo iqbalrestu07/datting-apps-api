@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  database:
+    platform: linux/x86_64
+    image: postgres:latest
+    container_name: datting-apps-postgres
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${DATABASE_PORT}:5432"
+      
+  api:
+    image: datting-apps-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: datting-apps-api
+    env_file:
+      - .env
+    volumes: 
+     - ~/public:/date-app/public
+    environment:
+      SERVER_ADDRESS: ${SERVER_ADDRESS}
+    ports:
+      - "${SERVER_ADDRESS}:8000"
+    depends_on:
+      - database
+    restart: unless-stopped
+    command: 
+      - "./datting-apps-api"
+
+
+volumes:
+  postgres_data:
+    driver: local
