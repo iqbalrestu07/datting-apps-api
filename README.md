@@ -1,8 +1,7 @@
 # datting-apps-api
 
 ## Introduction
-This is datting-apps-api, This project is create for a simple datting apps  similar like tinder or bumble with basic functionality. This project is created as first step proccess of appying jobs at deals.
-
+This is datting-apps-api, This project is create for a simple datting apps  similar like tinder or bumble with basic functionality. 
 ## System Proccess
 - Sign up and Sign in to the App
   - Implement auth for user
